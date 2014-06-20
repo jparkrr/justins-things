@@ -27,6 +27,8 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
 var reload = browserSync.reload;
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -34,6 +36,14 @@ gulp.task('jshint', function () {
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
         .pipe($.jshint.reporter('fail'))
+        .pipe(reload({stream: true, once: true}));
+});
+
+gulp.task('jsx', function () {
+    return browserify('./app/app.jsx').bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('app'))
+        .pipe(gulp.dest('dist'))
         .pipe(reload({stream: true, once: true}));
 });
 
@@ -88,7 +98,7 @@ gulp.task('styles:scss', function () {
 gulp.task('styles', ['styles:scss']);
 
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', function () {
+gulp.task('html', ['jsx'], function () {
     return gulp.src('app/**/*.html')
         .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
         // Concatenate And Minify JavaScript
@@ -128,12 +138,15 @@ gulp.task('serve', function () {
     gulp.watch(['app/styles/**/*.scss'], ['styles']);
     gulp.watch(['.tmp/styles/**/*.css'], reload);
     gulp.watch(['app/scripts/**/*.js'], ['jshint']);
+    gulp.watch(['app/**/*.jsx'], ['jsx']);
     gulp.watch(['app/images/**/*'], ['images']);
+
+    gulp.watch('bower.json', ['wiredep']);
 });
 
 // Build Production Files
 gulp.task('build', function (cb) {
-    runSequence('styles', ['jshint', 'html', 'images'], cb);
+    runSequence('styles', ['jshint', 'jsx', 'html', 'images'], cb);
 });
 
 // Default Task
