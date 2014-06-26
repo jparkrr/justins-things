@@ -85,7 +85,7 @@ gulp.task('styles:scss', function () {
 });
 
 // Output Final CSS Styles
-gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css']);
+gulp.task('styles', ['styles:scss']);
 
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
@@ -125,7 +125,7 @@ gulp.task('serve', function () {
     });
 
     gulp.watch(['app/**/*.html'], reload);
-    gulp.watch(['app/styles/**/*.{css,scss}'], ['styles']);
+    gulp.watch(['app/styles/**/*.scss'], ['styles']);
     gulp.watch(['.tmp/styles/**/*.css'], reload);
     gulp.watch(['app/scripts/**/*.js'], ['jshint']);
     gulp.watch(['app/images/**/*'], ['images']);
