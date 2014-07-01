@@ -47,6 +47,12 @@ gulp.task('jsx', function () {
         .pipe(reload({stream: true, once: true}));
 });
 
+gulp.task('copy', function() {
+    return gulp.src(['app/data.json'])
+        .pipe(gulp.dest('dist'))
+        .pipe(reload({stream: true, once: true}));
+});
+
 // Optimize Images
 gulp.task('images', function () {
     return gulp.src('app/images/**/*')
@@ -105,10 +111,6 @@ gulp.task('html', ['jsx'], function () {
         .pipe($.if('*.js', $.uglify()))
         // Concatenate And Minify Styles
         .pipe($.if('*.css', $.csso()))
-        // Remove Any Unused CSS
-        // Note: If not using the Style Guide, you can delete it from
-        // the next line to only include styles your project uses.
-        .pipe($.if('*.css', $.uncss({ html: ['app/index.html'] })))
         .pipe($.useref.restore())
         .pipe($.useref())
         // Update Production Style Guide Paths
@@ -135,18 +137,17 @@ gulp.task('serve', function () {
     });
 
     gulp.watch(['app/**/*.html'], reload);
+    gulp.watch(['app/data.json'], ['copy'])
     gulp.watch(['app/styles/**/*.scss'], ['styles']);
     gulp.watch(['.tmp/styles/**/*.css'], reload);
     gulp.watch(['app/scripts/**/*.js'], ['jshint']);
     gulp.watch(['app/**/*.jsx'], ['jsx']);
     gulp.watch(['app/images/**/*'], ['images']);
-
-    gulp.watch('bower.json', ['wiredep']);
 });
 
 // Build Production Files
 gulp.task('build', function (cb) {
-    runSequence('styles', ['jshint', 'jsx', 'html', 'images'], cb);
+    runSequence('styles', ['jshint', 'jsx', 'html', 'images', 'copy'], cb);
 });
 
 // Default Task

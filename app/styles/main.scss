@@ -1,5 +1,57 @@
+@import "components/backgrounds";
+
 body {
-    .content {
-        width: 100%;
+    margin-top: 100px;
+    width: 100%;
+    .content { width: 100%; }
+}
+
+.block {
+    width: 80%;
+    padding: 5% 10%;
+    margin-bottom: 100px;
+    position: relative;
+
+    @mixin transparent {
+        background-color: #ddd;
+        background-repeat: no-repeat;
+        content: "";
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .background {
+        @include transparent;
+    }
+
+    @mixin yellow-bg {
+        opacity: 0.7;
+        background: #FFFA02;
+        color: #0A1359;
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        font-weight: 500;
+    }
+    h1 {
+        @include yellow-bg;
+        line-height: 1.5em;
+        display: inline-block;
+        margin-bottom: 10%;
+    }
+    ul {
+        margin: 5% 15%;
+        width: 75%;
+        text-align: right;
+    }
+    li {
+        @include yellow-bg;
+        margin: 10px 0 0 10px;
+        display: inline-block;
     }
 }
