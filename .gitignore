@@ -1,5 +1,7 @@
 node_modules
 .sass-cache
 dist
+app/images
+app/data.json
 .tmp
 bundle.js
