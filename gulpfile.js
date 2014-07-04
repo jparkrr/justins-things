@@ -40,7 +40,11 @@ gulp.task('jshint', function () {
 });
 
 gulp.task('jsx', function () {
-    return browserify('./app/app.jsx').bundle()
+    return browserify('./app/app.jsx')
+        .require('react')
+        .transform('reactify')
+        .transform({global: true}, 'uglifyify')
+        .bundle({ debug: false })
         .pipe(source('bundle.js'))
         .pipe(gulp.dest('app'))
         .pipe(gulp.dest('dist'))
