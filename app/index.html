@@ -45,6 +45,17 @@
 
     </head>
     <body>
+        <!-- inject:svg:html -->
+        <link rel="import" href="styles/sprites.html" />
+        <script>
+            var link = document.querySelector('link[rel=import]');
+            var content = link.import.querySelector('#sprites');
+            document.body.insertBefore(
+                document.importNode(content, true),
+                document.body.firstChild
+            );
+        </script>
+        <!-- endinject -->
         <div class="content"></div>
         <script src="bundle.js"></script>
     </body>

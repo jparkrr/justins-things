@@ -119,6 +119,13 @@ gulp.task('html', ['jsx'], function () {
         .pipe($.useref())
         // Update Production Style Guide Paths
         .pipe($.replace('components/components.css', 'components/main.min.css'))
+        .pipe($.inject(gulp.src(['./app/styles/sprites.html']), {
+            starttag: '<!-- inject:svg:{{ext}} -->',
+            transform: function (filePath, file) {
+                // return file contents as string
+                return file.contents.toString('utf8')
+            }
+        }))
         // Minify Any HTML
         .pipe($.minifyHtml())
         // Output Files

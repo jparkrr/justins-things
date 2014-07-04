@@ -8,8 +8,10 @@ var Page = React.createClass({
         <Card
           name={card.name}
           attr={card.attr}
+          links={card.links}
           images={card.images}
-          num={i} />
+          num={i}
+          key={i} />
       );
     });
     return (
@@ -60,6 +62,22 @@ var CardBg = React.createClass({
       <div className={'background order-' + this.props.num}
            style={style} >
       </div>
+    );
+  }
+});
+
+var Link = React.createClass({
+  render: function() {
+    var service = this.props.text;
+    var icons = ['github', 'linkedin', 'mail', 'link', 'file'];
+    if (icons.indexOf(service) == -1)
+      service = 'link';
+    var iconhtml="<use xlink:href='#icon-" + service + "'></use>";
+    return (
+      <a href={this.props.href} target="_blank">
+        <svg className="icon" viewBox="0 0 32 32"
+          dangerouslySetInnerHTML={{__html: iconhtml}} />
+      </a>
     );
   }
 })
