@@ -36,18 +36,28 @@ body {
         text-align: center;
         vertical-align: middle;
         padding: 10px;
-        font-weight: 500;
     }
     h1 {
         @include yellow-bg;
         line-height: 1.5em;
         display: inline-block;
         margin-bottom: 10%;
+        font-weight: 900;
+        font-size: 40px;
+        font-family: 'Lato', serif;
     }
     ul {
         margin: 5% 15%;
         width: 75%;
         text-align: right;
+        li {
+            @include yellow-bg;
+            margin: 10px 0 0 10px;
+            display: inline-block;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+        }
     }
     li {
         @include yellow-bg;

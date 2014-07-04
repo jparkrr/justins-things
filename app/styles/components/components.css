@@ -376,3 +376,22 @@ th {
 blockquote {
   margin: 0;
 }
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local("Lato Black"), local("Lato-Black"), url(https://brick.a.ssl.fastly.net/fonts/lato/900.woff) format("woff");
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://brick.a.ssl.fastly.net/fonts/opensans/700.woff) format("woff");
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://brick.a.ssl.fastly.net/fonts/opensans/400.woff) format("woff");
+}
