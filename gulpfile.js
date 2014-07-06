@@ -59,12 +59,12 @@ gulp.task('copy', function() {
 
 // Optimize Images
 gulp.task('images', function () {
-    return gulp.src('app/images/**/*')
+    return gulp.src('app/assets/**/*')
         .pipe($.cache($.imagemin({
             progressive: true,
             interlaced: true
         })))
-        .pipe(gulp.dest('dist/images'))
+        .pipe(gulp.dest('dist/assets'))
         .pipe(reload({stream: true, once: true}))
         .pipe($.size({title: 'images'}));
 });
@@ -153,7 +153,7 @@ gulp.task('serve', function () {
     gulp.watch(['.tmp/styles/**/*.css'], reload);
     gulp.watch(['app/scripts/**/*.js'], ['jshint']);
     gulp.watch(['app/**/*.jsx'], ['jsx']);
-    gulp.watch(['app/images/**/*'], ['images']);
+    gulp.watch(['app/assets/**/*'], ['images']);
 });
 
 // Build Production Files
