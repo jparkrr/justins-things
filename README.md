@@ -1,6 +1,6 @@
-# Google Web Starter Kit
+# Justin's Things
 
-## Features
+Based on Google/web-starter-kit
 
 * Mobile-optimized HTML boilerplate
 * Responsive multi-device layout
@@ -16,8 +16,6 @@
   * CSS auto-prefixing
 
 ## Tooling
-
-If you would like to use the optional tooling we provide, make sure your system has [Node.js](http://nodejs.org), [Ruby](https://www.ruby-lang.org/), [gulp.js](http://gulpjs.com) and [Sass](http://sass-lang.com/install) installed.
 
 ### Gulp
 
@@ -55,27 +53,12 @@ $ gulp
 
 Build and optimize the current project, ready for deployment. This includes linting as well as image, script, stylesheet and HTML optimization and minification.
 
-#### Performance Insights
-
 ```sh
-$ gulp pagespeed
+$ node server.js
 ```
 
-Runs the deployed (public) version of your site against the [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) API to help you stay on top of where you can improve.
-
-## Web Performance
-
-Web Starter Kit strives to give you a high performance starting point out of the box and we actively work on delivering the best [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) score and frame-rate possible.
-
-In terms of CSS, opting to just use the minimal layout (main.css, h5bp.css) weighs in at ~7KB before modifications are made. Opting to use the Style Guide styles (the default) will take this up to ~39KB. It is your choice which path makes the most sense for your project, however notes on excluding Style Guide styles are in our gulpfile.
-
-
-## Troubleshooting
-
-If you find yourself running into issues during installation or running the tools, please check our [Troubleshooting](https://github.com/google/web-starter-kit) guide and then open an [issue](https://github.com/google/web-starter-kit/issues). We would be happy to discuss how they can be solved.
-
-
+Runs the included express server with node.
 ## License
 
 Apache 2.0  
-Copyright 2014 Google Inc
+Based on code Copyright 2014 Google Inc
