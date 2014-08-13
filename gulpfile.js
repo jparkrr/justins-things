@@ -123,7 +123,7 @@ gulp.task('html', ['jsx'], function () {
             starttag: '<!-- inject:svg:{{ext}} -->',
             transform: function (filePath, file) {
                 // return file contents as string
-                return file.contents.toString('utf8')
+                return file.contents.toString('utf8');
             }
         }))
         // Minify Any HTML
@@ -148,7 +148,7 @@ gulp.task('serve', function () {
     });
 
     gulp.watch(['app/**/*.html'], reload);
-    gulp.watch(['app/data.json'], ['copy'])
+    gulp.watch(['app/data.json'], ['jsx']);
     gulp.watch(['app/styles/**/*.scss'], ['styles']);
     gulp.watch(['.tmp/styles/**/*.css'], reload);
     gulp.watch(['app/scripts/**/*.js'], ['jshint']);
