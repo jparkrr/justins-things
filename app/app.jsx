@@ -96,7 +96,7 @@ var Attributes = React.createClass({
       'opacity': this.props.hovered ? 0.2 : 0.7
     };
     function generateKey(e) {
-      return (e.props && e.props['text']) || e;
+      return (e.props && e.props.text) || e;
     }
     var that = this;
     var boxes = this.props.arr.map(function(text) {
@@ -153,7 +153,7 @@ var Link = React.createClass({
       /* jshint ignore: end */
     );
   }
-})
+});
 
 React.renderComponent(
 /* jshint ignore: start */

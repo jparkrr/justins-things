@@ -1,4 +1,6 @@
 {
   "curly": false,
-  "unused": false
+  "unused": false,
+  "globalstrict": true,
+  "predef": [ "require", "document" ]
 }
