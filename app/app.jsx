@@ -4,14 +4,10 @@ var data = require('./data.json');
 
 var Page = React.createClass({
   render: function() {
-    var cards = data.projects.map(function(card, i) {
+    var cards = data.projects.map(function(project, i) {
       return (
       /* jshint ignore: start */
-        <Card
-          name={card.name}
-          attr={card.attr}
-          links={card.links}
-          images={card.images}
+        <Card project={project}
           num={i}
           key={i} />
       /* jshint ignore: end */
@@ -39,26 +35,28 @@ var Card = React.createClass({
     this.setState({hovered: false});
   },
   render: function() {
+    var project = this.props.project;
+    var hoverBundle = {
+      set: this.setHovered,
+      unset: this.unsetHovered,
+      state: this.state.hovered
+    };
   return (
     /* jshint ignore: start */
     <div className='block'>
-      <Title name={this.props.name}
-        myHover={this.setHovered}
-        myNoHover={this.unsetHovered}
-        hovered={this.state.hovered} />
+      <Title name={project.name}
+        myHover={hoverBundle} />
 
-      <Attributes arr={this.props.attr}
-        myHover={this.setHovered}
-        myNoHover={this.unsetHovered}
-        hovered={this.state.hovered} />
+      <Attributes arr={project.attr}
+        myHover={hoverBundle} />
 
-      <Attributes arr={this.props.links.map(function(e) {
+      <Attributes arr={project.links.map(function(e) {
         return <Link href={e.url} text={e.name} />
       })} className='links' />
 
       <CardBg
-        src={this.props.images[0]}
-        num={this.props.num}
+        src={project.images[0]}
+        num={project.num}
         hovered={this.state.hovered} />
     </div>
     /* jshint ignore: end */
@@ -67,15 +65,15 @@ var Card = React.createClass({
 });
 
 var SetHoverMixin = {
-  hover: function(event) { if (this.props.myHover) this.props.myHover(this); },
-  noHover: function(event) { if (this.props.myHover) this.props.myNoHover(this); },
+  hover: function(event) { if (this.props.myHover) this.props.myHover.set(this); },
+  noHover: function(event) { if (this.props.myHover) this.props.myHover.unset(this); },
 };
 
 var Title = React.createClass({
   mixins: [SetHoverMixin],
   render: function() {
     var style = {
-      'opacity': this.props.hovered ? 0.2 : 0.7
+      'opacity': this.props.myHover.state ? 0.2 : 0.7
     };
     return (
       /* jshint ignore: start */
